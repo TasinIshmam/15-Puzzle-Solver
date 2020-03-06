@@ -2,13 +2,11 @@
 
 class Node:
 
-    def __init__(self, board, parent=None, f_value):
+    def __init__(self, board, h_value, parent=None):
         self.board = board
         self.parent = parent
+        self.f_value = h_value + len(self.path()) - 1
 
-    #TODO probably don't need this function.
-    def child(self, board):
-        return Node(board, self)
 
     def path(self):
        
