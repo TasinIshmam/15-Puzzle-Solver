@@ -1,6 +1,6 @@
 
 
-class Graph_State:
+class Node:
 
     def __init__(self, board, h_value, parent=None):
         self.board = board

@@ -10,14 +10,14 @@ class Board:
 
 
     def valid_moves(self):
-       #Moves are: 1 = right 2 = up 3 = left 4 = down
+       #Moves are: 1 = right, 2 = up, 3 = left, 4 = down
         moves = []
-        if self.empty_tile_pos[1] != 0:
-            moves.append(3)
         if self.empty_tile_pos[1] != 3:
             moves.append(1)
         if self.empty_tile_pos[0] != 0:
             moves.append(2)
+        if self.empty_tile_pos[1] != 0:
+            moves.append(3)
         if self.empty_tile_pos[0] != 3:
             moves.append(4)
 
@@ -25,51 +25,38 @@ class Board:
 
     def move_tile(self, direction):
 
-
+        x,y =  self.empty_tile_pos
         if direction == 1:
             if direction in self.valid_moves():
-                self.move_right()
-
+                self.board_state[x][y] = self.board_state[x][y + 1]
+                self.board_state[x][y + 1] = 0
+                self.empty_tile_pos = self.empty_tile_pos[0], self.empty_tile_pos[1] + 1
         elif direction == 2:
             if direction in self.valid_moves():
-                self.move_up()
-
+                self.board_state[x][y] = self.board_state[x - 1][y]
+                self.board_state[x - 1][y] = 0
+                self.empty_tile_pos = self.empty_tile_pos[0] - 1, self.empty_tile_pos[1]
         elif direction == 3:
             if direction in self.valid_moves():
-                self.move_left()
-
+                self.board_state[x][y] = self.board_state[x][y - 1]
+                self.board_state[x][y - 1] = 0
+                self.empty_tile_pos = self.empty_tile_pos[0], self.empty_tile_pos[1] - 1
         elif direction == 4:
             if direction in self.valid_moves():
-                self.move_down()
+                self.board_state[x][y] = self.board_state[x + 1][y]
+                self.board_state[x + 1][y] = 0
+                self.empty_tile_pos = self.empty_tile_pos[0] + 1, self.empty_tile_pos[1] 
 
-    def move_right(self):
-        x,y = self.empty_tile_pos
-        self.board_state[x][y] = self.board_state[x][y + 1]
-        self.board_state[x][y + 1] = 0
-        self.empty_tile_pos = self.empty_tile_pos[0], self.empty_tile_pos[1] + 1
+    def print_board_state(self):
+        print(self.board_state)
 
-    def move_up(self):
-        x, y = self.empty_tile_pos
-        self.board_state[x][y] = self.board_state[x - 1][y]
-        self.board_state[x - 1][y] = 0
-        self.empty_tile_pos = self.empty_tile_pos[0] - 1, self.empty_tile_pos[1]
-
-    def move_left(self):
-        x, y = self.empty_tile_pos
-        self.board_state[x][y] = self.board_state[x][y - 1]
-        self.board_state[x][y - 1] = 0
-        self.empty_tile_pos = self.empty_tile_pos[0], self.empty_tile_pos[1] - 1
-
-    def move_down(self):
-        x, y = self.empty_tile_pos
-        self.board_state[x][y] = self.board_state[x + 1][y]
-        self.board_state[x + 1][y] = 0
-        self.empty_tile_pos = self.empty_tile_pos[0] + 1, self.empty_tile_pos[1]
+    def print(self):
+        print(self.board_state)
 
     def __repr__(self):
         return "Board:\n[{}\n{}\n{}\n{}]\n\n".format(self.board_state[0], self.board_state[1], self.board_state[2], self.board_state[3])
 
-    def check_solved(self):
+    def is_solved(self):
         return self.board_state == self.goal_state
     
     def __eq__(self, other):

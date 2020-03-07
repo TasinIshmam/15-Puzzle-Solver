@@ -4,7 +4,7 @@ from node import *
 import heapq
 
 
-def a_star_search(board, heuristic):
+def a_star(board, heuristic):
 
     priortiy_queue = []
     node = Graph_State(board, heuristic(board.board_state, board.goal_state))
@@ -29,5 +29,4 @@ def a_star_search(board, heuristic):
 
         closed_set.add(node.board)
 
-    print("Failed to solve")
-    return None, 0
+    return None, len(closed_set)
