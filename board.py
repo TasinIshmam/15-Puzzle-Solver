@@ -10,22 +10,23 @@ class Board:
 
 
     def valid_moves(self):
-       #Moves are: 1 = right 2 = up 3 = left 4 = down
         moves = []
-        if self.empty_tile_pos[1] != 0:
-            moves.append(3)
+
         if self.empty_tile_pos[1] != 3:
             moves.append(1)
-        if self.empty_tile_pos[0] != 0:
-            moves.append(2)
         if self.empty_tile_pos[0] != 3:
             moves.append(4)
+        if self.empty_tile_pos[0] != 0:
+            moves.append(2)
+        if self.empty_tile_pos[1] != 0:
+            moves.append(3)
 
         return moves    
 
     def move_tile(self, direction):
+       #Direction: 1 = right 2 = up 3 = left 4 = down
 
-
+        
         if direction == 1:
             if direction in self.valid_moves():
                 self.move_right()

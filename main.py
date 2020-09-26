@@ -30,25 +30,13 @@ if __name__ == '__main__':
         print("Using Manhattan heuristic to solve input {}".format(Lines[i]))
         board = Board(starting_state, goal_state)
         path, expanded_nodes = a_star_search(board, h2_heuristic)
-        print("Path: {}\nCost: {}\nExpanded Nodes: {}\n\n".format("", len(path) - 1, expanded_nodes))
+        print("Path: {}\nCost: {}\nExpanded Nodes: {}\n\n".format(path, len(path) - 1, expanded_nodes))
 
         print("Using Misplaced Tiles heuristic to solve input {}".format(Lines[i]))
         board = Board(starting_state, goal_state)
         path, expanded_nodes = a_star_search(board, h1_heuristic)
-        print("Path: {}\nCost: {}\nExpanded Nodes: {}".format("", len(path) - 1, expanded_nodes))
+        print("Path: {}\nCost: {}\nExpanded Nodes: {}".format(path , len(path) - 1, expanded_nodes))
+    exit()
+        
 
 
-
-
-
-   
-
-
-
-'''
-TODO
-Remove comments
-Obfuscate variable names 
-remove numpy library and function
-read from input file 
-'''
